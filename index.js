@@ -37,6 +37,21 @@ function daysLeftHandler(req, res){
   send(res, 200, whenRes);
 }
 
+function helpHandler(req, res){
+  let helpRes =
+    {
+      text:
+        "I am here to help you out, " +
+        "here are the commands I accept:" +
+        "`/trobot help`\n" +
+        "`/trobot when`\n" +
+        "`/trobot mediateam`\n",
+      response_type: "ephemeral"
+    }
+
+  send(res, 200, helpRes);
+}
+
 function unknownMessageHandler(req, res, text){
   let msgRes =
     {
@@ -61,6 +76,12 @@ async function handleRequest(req, res) {
 
       case 'when':
         daysLeftHandler(req, res);
+
+      case 'help':
+        helpHandler(req, res);
+
+      case '':
+        helpHandler(req, res);
 
       default:
         unknownMessageHandler(req, res, message.text);

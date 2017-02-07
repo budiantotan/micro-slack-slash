@@ -37,6 +37,16 @@ function daysLeftHandler(req, res){
   send(res, 200, whenRes);
 }
 
+function unknownMessageHandler(req, res, text){
+  let msgRes =
+    {
+      text: `I'm sorry, I could not process message ${text}`,
+      response_type: "ephemeral"
+    }
+
+  send(res, 200, msgRes);
+}
+
 async function handleRequest(req, res) {
   const message = await json(req)
 
@@ -53,8 +63,7 @@ async function handleRequest(req, res) {
         daysLeftHandler(req, res);
 
       default:
-        send(res, 404, "Not found :(");
-        break;
+        unknownMessageHandler(req, res, message.text);
     }
   } catch (error) {
     sendError(req, res, error);

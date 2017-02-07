@@ -1,10 +1,41 @@
 const { send, sendError, json } = require('micro');
 const microCors = require('micro-cors');
+const moment = require('moment');
 const url = require('url');
 
 const cors = microCors({ allowMethods: ['GET', 'POST'] });
 
 module.exports = cors(handleRequest);
+
+function mediaTeamHandler(req, res) {
+  let mediateamRes =
+    {
+      text: "Masa\nLukas\nJoana\nSolene\nYulia",
+      response_type: "in_channel"
+    }
+
+  send(res, 200, mediateamRes);
+}
+
+function daysLeftHandler(req, res){
+  let now = new Date();
+  let troDate = new Date('2017-4-19 00:00:00 +0100');
+  let daysLeft = moment(troDate).diff(now, 'days');
+
+  if (daysLeft < 0) {
+    daysLeft = 0
+  }
+
+  let daysText = `There are *${daysLeft} days* until TRØ17 is on!`
+
+  let whenRes =
+    {
+      text: daysText,
+      response_type: "in_channel"
+    }
+
+  send(res, 200, whenRes);
+}
 
 async function handleRequest(req, res) {
   const data = await json(req)
@@ -12,30 +43,10 @@ async function handleRequest(req, res) {
   try {
     switch (data.text) {
       case 'mediateam':
-        let mediateamRes =
-            {
-              text: "Masa\nLukas\nJoana\nSolene\nYulia",
-              response_type: "in_channel"
-            }
-        send(res, 200, mediateamRes);
+        mediaTeamHandler(req, res);
 
       case 'when':
-        let currentDate = Date.now()
-        let troDate = new Date(2017, 4, 19)
-        let daysLeft = ...
-
-        if daysLeft < 0 {
-          daysLeft = 0
-        }
-
-        let daysText = `There are *${daysLeft} days* until TRØ17 is on!`
-
-        let whenRes =
-            {
-              text: daysText
-              response_type: "in_channel"
-            }
-        send(res, 200, whenRes);
+        daysLeftHandler(req, res);
 
       default:
         send(res, 404, "Not found :(");

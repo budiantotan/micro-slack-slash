@@ -6,13 +6,14 @@ Uses `async-await` and the handy [micro framework](https://github.com/zeit/micro
 Ideal for deploying to [now.sh](https://now.sh).
 
 Originally designed for Trondheim & Røros, it is easy to extend and customise to your liking.
-There is no routing to speak of, apart from handling each `data.text` differently for each command.
+There is no routing to speak of, apart from handling each `message.text` differently for each command.
 
 # Development
 - You should have `node` installed; the 6.9 LTS is known to work well
 - Install dependencies with `yarn` or `npm install`
 - Then `yarn run start` or `npm start`, and navigate to `localhost:3000`
 - Send POST requests to the root; see the format below
+- Add new handlers in modules or index.js, and link them to the switch in index.js. The demo handlers should give you an idea of what to return.
 
 # Deployment
 The service is currently deployed using [now.sh](https://now.sh), which means you just run `now` at the project root.
@@ -25,12 +26,12 @@ Otherwise, the steps would be roughly:
 - You might want to look into a process manager, or run the server as a service
 
 # Slack setup
-- Go to your team's `add integrations`
-- Select `Slash Commands`
-- Customise your `command`; users will type `/mycommandname message`
-- Add the `URL` of your public-facing service
-- Set `method` to POST
-- Add the `token` that you get to the `index.js` `KEY` constant
+- Go to your team's **Add integrations** option
+- Select **Slash Commands**
+- Customise **Command**; users will type `/mycommandname message`
+- Add the **URL** of your public-facing service
+- Set **method** to POST
+- Add the **token** that you get either directly to `index.js` or the env variable `SLACK_TOKEN`
 - Customise anything else to your liking
 
 # Usage / Slash Command Format
@@ -49,7 +50,8 @@ response_url=https://hooks.slack.com/commands/1234/5678
 ```
 
 Of these, `text` is important to disambiguate which handler to use, and `token` to gate access.
-The other fields are also available under `data` and you can combine them however you wish.
+The other fields are also available under `const message`; you can combine them however you wish, and pass it on to the handlers.
+
 `Response_url` is a bit more interesting; [read the Slack documentation to learn more about it](https://api.slack.com/slash-commands).
 
 # References

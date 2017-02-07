@@ -38,10 +38,14 @@ function daysLeftHandler(req, res){
 }
 
 async function handleRequest(req, res) {
-  const data = await json(req)
+  const message = await json(req)
+
+  if (message.token !== process.env.SLACK_TOKEN) {
+    send(res, 401, "Unauthorized");
+  }
 
   try {
-    switch (data.text) {
+    switch (message.text) {
       case 'mediateam':
         mediaTeamHandler(req, res);
 

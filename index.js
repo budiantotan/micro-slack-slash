@@ -11,7 +11,7 @@ module.exports = cors(handleRequest);
 function mediaTeamHandler(req, res) {
   let mediateamRes =
     {
-      text: "Masa\nLukas\nJoana\nSolene\nYulia",
+      text: "Joana\nLukas\nMaša\nSolène\nYulia",
       response_type: "in_channel"
     }
 
@@ -43,7 +43,7 @@ function helpHandler(req, res){
     {
       text:
         "I am here to help you out, " +
-        "here are the commands I accept:" +
+        "here are the commands I accept:\n" +
         "`/trobot help`\n" +
         "`/trobot when`\n" +
         "`/trobot mediateam`\n",

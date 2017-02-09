@@ -7,7 +7,8 @@
   "dependencies": {
     "micro": "^7.0.3",
     "micro-cors": "^0.0.1",
-    "moment": "^2.17.1"
+    "moment": "^2.17.1",
+    "urlencoded-body-parser": "^2.0.0"
   },
   "engines": {
     "node": "6.9.x"

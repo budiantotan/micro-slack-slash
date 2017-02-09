@@ -1,6 +1,7 @@
 const { send, sendError, json } = require('micro');
 const microCors = require('micro-cors');
 const moment = require('moment');
+const parse = require('urlencoded-body-parser');
 const url = require('url');
 
 const cors = microCors({ allowMethods: ['GET', 'POST'] });
@@ -63,7 +64,7 @@ function unknownMessageHandler(req, res, text){
 }
 
 async function handleRequest(req, res) {
-  const message = await json(req)
+  const message = await parse(req)
 
   if (message.token !== process.env.SLACK_TOKEN) {
     send(res, 401, "Unauthorized");

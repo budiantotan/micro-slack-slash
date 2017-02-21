@@ -16,5 +16,11 @@
   },
   "devDependencies": {
     "xo": "^0.17.1"
+  },
+  "xo": {
+    "space": true,
+    "rules": {
+      "camelcase": 0
+    }
   }
 }

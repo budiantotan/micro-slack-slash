@@ -2,7 +2,8 @@
   "name": "tro-bot",
   "main": "index.js",
   "scripts": {
-    "start": "micro -p 3000"
+    "start": "micro -p 3000",
+    "test": "xo"
   },
   "dependencies": {
     "micro": "^7.0.3",
@@ -12,5 +13,8 @@
   },
   "engines": {
     "node": "6.9.x"
+  },
+  "devDependencies": {
+    "xo": "^0.17.1"
   }
 }

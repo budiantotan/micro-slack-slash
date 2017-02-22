@@ -6,9 +6,11 @@
     "test": "xo"
   },
   "dependencies": {
+    "level": "^1.6.0",
     "micro": "^7.0.3",
     "micro-cors": "^0.0.1",
     "moment": "^2.17.1",
+    "then-levelup": "^1.0.2",
     "urlencoded-body-parser": "^2.0.0"
   },
   "engines": {

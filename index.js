@@ -44,7 +44,8 @@ function helpHandler(req, res) {
         'here are the commands I accept:\n' +
         '`/trobot help`\n' +
         '`/trobot when`\n' +
-        '`/trobot mediateam`\n',
+        '`/trobot mediateam`\n' +
+        '`/trobot who start`\n',
       response_type: 'ephemeral'
     };
 

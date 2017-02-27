@@ -1,0 +1,14 @@
+# Next
+Add expiration
+Add freshness / LRU
+
+# Later
+Add points?
+Add maps from username answer name, if applicable
+
+# Cleanup
+Handle /command just in case
+Find why it warns on "promise not handled, can't set headers after they are sent"
+
+# Info
+"Pluggable who game"
